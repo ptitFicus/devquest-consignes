@@ -327,7 +327,7 @@ test("Opening a new tab", async ({ page, browser }) => {
 
 Ouvrez un nouvel onglet, puis vérifier que les modifications dans un onglet sont bien répertoriées dans le nouveau (en rechargeant la page).
 
-### Bonus final : Playwright sans les tests
+### Bonus : Playwright sans les tests
 
 Nous allons maintenant voir comment utiliser playwright hors de tout contexte de test, simplement pour exécuter et automatiser des actions dans le navigateur.
 
@@ -365,3 +365,15 @@ import { chromium } from "playwright";
   await browser.close();
 })();
 ```
+
+### Bonsu final : Page object model
+
+Lorsque les tests s'accumulent, le code peut vite devenir redondant.
+
+On peut bien sûr factoriser du code en créant des fonctions, mais il est égalament possible d'organiser son code de test d'une autre manière à l'aide de la technique des "Page Object Models".
+
+L'idée est de représenter chaque page de votre application par une classe JavaScript, chaque classe conservant les locator les plus couramment utilisés ainsi que les opérations les plus fréquentes.
+
+#### Ce qu'il faut faire
+
+[Lisez la documentation sur les page object models](https://playwright.dev/docs/pom) et implémentez ce pattern dans vos tests.

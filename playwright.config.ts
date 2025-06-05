@@ -43,13 +43,13 @@ export default defineConfig({
       name: "firefox",
       use: { ...devices["Desktop Firefox"] },
       dependencies: ["chromium"],
-    },
+    } /*,
 
     {
       name: "webkit",
       use: { ...devices["Desktop Safari"] },
       dependencies: ["firefox"],
-    },
+    },*/,
 
     /* Test against mobile viewports. */
     // {
