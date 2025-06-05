@@ -55,7 +55,7 @@ Enfin, copier / coller le contenu du fichier `playwright.config.ts` à la place 
 
 L'application à tester est disponible sous plusieurs formats :
 
-- Un conteneur docker téléchargeable depuis docker hub `docker run -p 8080:8080 ptitFicus/playwright`
+- Un conteneur docker téléchargeable depuis docker hub `docker run -p 8080:8080 ptitficus/playwright`
 - Des fichiers binaires disponibles ici https://github.com/ptitFicus/devquest/tree/main/bin
 - Un jar (nécessite un jre 17+) disponible ici https://github.com/ptitFicus/devquest/blob/main/hero-management.jar
 
