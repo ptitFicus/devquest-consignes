@@ -1,5 +1,28 @@
 # Playwright
 
+## Table des matières
+
+- [Mise en place](#mise-en-place)
+- [Mise en place - application de test](#mise-en-place-application-de-test)
+- [Premier test](#premier-test)
+  - [Anatomie d'un test](#anatomie-dun-test)
+- [C'est parti !](#cest-parti-)
+  - [Apparté sur les sélecteurs](#apparté-sur-les-sélecteurs)
+- [Lancer le test](#lancer-le-test)
+- [À vous de jouer](#à-vous-de-jouer)
+- [Codegen](#codegen)
+- [BeforeEach](#beforeeach)
+- [Plein de bonus si vous êtes en avance](#plein-de-bonus-si-vous-êtes-en-avance)
+  - [Bouton de reroll](#bouton-de-reroll)
+  - [Composition de l'équipe](#composition-de-léquipe)
+  - [Invocation d'un héro](#invocation-dun-héro)
+- [Bouchons](#bouchons)
+- [Non régression visuelle](#non-régression-visuelle)
+- [Tests de non régression d'accessibilité](#tests-de-non-régression-daccessibilité)
+- [Tests multi onglets](#tests-multi-onglets)
+- [Bonus : Playwright sans les tests](#bonus-playwright-sans-les-tests)
+- [Bonsu final : Page object model](#bonsu-final-page-object-model)
+
 ## Mise en place
 
 Pour installer Playwright, utilisez la commande suivante dans un dossier vide
@@ -60,7 +83,7 @@ L'objet `page` donné en entrée représente un onglet du navigateur, et permet 
 
 Les méthodes seront détaillées au fur et à mesures des besoins, mais elles sont toutes listées [sur cette page](https://playwright.dev/docs/api/class-page).
 
-### C'est parti !
+## C'est parti !
 
 Nous allons rédiger un premier test allant sur la page de l'application et vérifiant que le titre est bien visible.
 Pour commencez, créer un fichier `hero-management.js` dans le dossiers `tests` créé lors de l'initialisation de Playwright.
@@ -88,7 +111,7 @@ Cette méthode permet de trouver un élément en se basant sur son rôle d'acces
 
 Pour plus de détails sur ce sélecteur (et sur les autres), [voir cette doc](https://playwright.dev/docs/locators#locate-by-role).
 
-### Lancer le test
+## Lancer le test
 
 Pour lancer le test, plusieurs commande sont possibles :
 
@@ -106,7 +129,7 @@ npx playwright test --ui
 
 Enfin, Playwright dispose d'un excellent plugin VScode qui permet de lancer les tests directement depuis l'éditeur.
 
-### À vous de jouer
+## À vous de jouer
 
 Écrivez un premier test permettant de remplir le formulaire de la landing page et de passer à la page suivante.
 
@@ -135,7 +158,7 @@ Une fois le formulaire rempli et le bouton pressé, votre test doit vérifier qu
 **N'oubliez pas les `await`**
 ⚠️⚠️⚠️
 
-### Codegen
+## Codegen
 
 Nous allons utiliser le codegen pour écrire un autre test, tout d'abord lancez le codegen.
 
@@ -153,7 +176,7 @@ Voici ce que le test devra faire
 
 Copiez / collez le code généré dans un nouveau test, nettoyer le en retirant les lignes qui vous semblent inutile et rajouter des `expect` là ou c'est nécessaire.
 
-### BeforeEach
+## BeforeEach
 
 Nos tests modifient l'état interne de l'application, ce qui risque d'avoir des effets de bords indésirables sur d'autres tests.
 
@@ -174,26 +197,26 @@ L'appel de cet endpoint provoque l'abandon de la partie en cours.
 
 Vérifiez que le beforeEach fonctionne correctement en modifiant les tests précédents pour ne plus aller explicitement sur `landing-page`, mais sur `/` (la page `/` redirige vers `landing-page` lorsqu'aucune partie n'est en cours).
 
-### Plein de bonus si vous êtes en avance
+## Plein de bonus si vous êtes en avance
 
-#### Bouton de reroll
+### Bouton de reroll
 
 1. Vérifiez que le bouton reroll (visible lorsqu'un groupe est configuré) diminue bien l'argent (en haut à droite de l'écran) de 1000 à chaque utilisation.
 2. Vérifiez qu'il est bien désactivé lorsque l'argent est insuffisant.
 3. Vérifiez que le bouton génère bien une nouvelle liste de quête lorsque l'on clique dessus
 
-#### Composition de l'équipe
+### Composition de l'équipe
 
 1. Vérifiez que la somme d'argent restante diminue bien lorsqu'un groupe est créé (-1000 par nouvel aventurier).
 2. Vérifier que les boutons de recrutement disparaissent de l'écran de sélection des héros lorsque vous en avez 4.
 3. Vérifiez que l'écran principal vous propose de compléter votre groupe si il comporte moins de 4 héros.
 
-#### Invocation d'un héro
+### Invocation d'un héro
 
 1. Vérifier que le héro invoqué est bien ajouté à la liste
 2. Vérifier que le héro invoqué peut-être ajoutée au groupe.
 
-### Bouchons
+## Bouchons
 
 Lorsque vous vous lancez dans une quête avec votre groupe de héros :
 
@@ -217,7 +240,7 @@ await page.route("/<ROUTE_TO_MOCK>", async (route) => {
 
 [La doc associée](https://playwright.dev/docs/api/class-page#page-route).
 
-#### Ce qu'il faut faire
+### Ce qu'il faut faire
 
 1. À l'aide des devtools du navigateur, analysez le traffic http (endpoint / format de réponse) lors de la réalisation d'une quête
 2. En vous aidant de l'extrait de code ci-dessus, testez le bon affichage des quêtes réussies et échouées
@@ -232,7 +255,7 @@ const dialog = page.getByRole("dialog");
 dialog.getByText("<MON TEXTE>");
 ```
 
-#### Bonus
+### Bonus
 
 Récupérer le nom de la quête dans la requête interceptée pour renvoyer un bouchon le plus fidèle possible à la réalité.
 
@@ -250,7 +273,7 @@ await page.route("/<ROUTE_TO_MOCK>", async (route) => {
 });
 ```
 
-#### Super bonus
+### Super bonus
 
 [En vous aidant de cette page](https://playwright.dev/docs/mock#mocking-with-har-files) enregistrez l'ensemble des appels au backend au format HAR, de manière à pouvoir les rejouer lorsqu'une variable d'environnement `CI` est présente.
 
@@ -258,7 +281,7 @@ Utilisez une seed fixe pour vous assurez que le test soit reproductible lorsque 
 
 C'est particulièrement utile si vous souhaitez pouvoir tester votre frontend en isolation du backend.
 
-### Non régression visuelle
+## Non régression visuelle
 
 Les tests de non régressions visuels peuvent être utiles pour s'assurer qu'une page ou partie de la page ne change pas par accident.
 
@@ -275,7 +298,7 @@ Le test échouera la première fois, mais génèrera un screenshot "référence"
 
 [La documentation associée](https://playwright.dev/docs/test-snapshots)
 
-#### Ce qu'il faut faire
+### Ce qu'il faut faire
 
 Réaliser un test de régression visuel sur la landing page.
 
@@ -285,7 +308,7 @@ Assurez vous que votre test fonctionnne correctement en modifiant l'affichage, p
 await page.setViewportSize({ width: 750, height: 750 });
 ```
 
-### Tests de non régression d'accessibilité
+## Tests de non régression d'accessibilité
 
 Les tests de non régression d'accessibility permettent de garantir que l'accessibilité d'une page ne se dégrade pas au cours du temps, en s'appuyant sur un certain nombre de règles vérifiables automatiquement.
 
@@ -307,11 +330,11 @@ expect(accessibilityScanResults.violations).toEqual([]);
 
 [La documentation associée](https://playwright.dev/docs/accessibility-testing)
 
-#### Ce qu'il faut faire
+### Ce qu'il faut faire
 
 Lancez un test d'accessibilité sur la landing page.
 
-#### Bonus
+### Bonus
 
 Il reste une erreur d'accessibilité sur la landing page, précisez au test de l'ignorer lors de la vérification, pour cela il faut trouver l'id de l'erreur et préciser que l'onsouhaite l'ignorer :
 
@@ -319,7 +342,7 @@ Il reste une erreur d'accessibilité sur la landing page, précisez au test de l
 await new AxeBuilder({ page }).disableRules(["<ID DE LA REGLE>"]).analyze();
 ```
 
-### Tests multi onglets
+## Tests multi onglets
 
 Playwright permet d'ouvrir de nouveaux onglets, ou même de nouveau contextes de navigation.
 
@@ -330,17 +353,17 @@ test("Opening a new tab", async ({ page, browser }) => {
 });
 ```
 
-#### Ce qu'il faut faire
+### Ce qu'il faut faire
 
 Ouvrez un nouvel onglet, puis vérifier que les modifications dans un onglet sont bien répertoriées dans le nouveau (en rechargeant la page).
 
-### Bonus : Playwright sans les tests
+## Bonus : Playwright sans les tests
 
 Nous allons maintenant voir comment utiliser playwright hors de tout contexte de test, simplement pour exécuter et automatiser des actions dans le navigateur.
 
 Créer un nouveau dossier `src` et un fichier `experimentation.js` (ou .ts) dedans.
 
-#### Ce qu'il faut faire
+### Ce qu'il faut faire
 
 Dans ce fichier, écrivez un bout de code qui va sur la landing page, en prend un screenshot et le stocke dans un fichier local.
 
@@ -373,7 +396,7 @@ import { chromium } from "playwright";
 })();
 ```
 
-### Bonsu final : Page object model
+## Bonsu final : Page object model
 
 Lorsque les tests s'accumulent, le code peut vite devenir redondant.
 
@@ -381,6 +404,6 @@ On peut bien sûr factoriser du code en créant des fonctions, mais il est égal
 
 L'idée est de représenter chaque page de votre application par une classe JavaScript, chaque classe conservant les locator les plus couramment utilisés ainsi que les opérations les plus fréquentes.
 
-#### Ce qu'il faut faire
+### Ce qu'il faut faire
 
 [Lisez la documentation sur les page object models](https://playwright.dev/docs/pom) et implémentez ce pattern dans vos tests.
