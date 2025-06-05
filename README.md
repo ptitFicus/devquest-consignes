@@ -324,6 +324,8 @@ npm i @axe-core/playwright
 Le code pour déclencher une analyse est assez simple
 
 ```js
+import AxeBuilder from "@axe-core/playwright";
+
 const accessibilityScanResults = await new AxeBuilder({ page }).analyze();
 expect(accessibilityScanResults.violations).toEqual([]);
 ```
@@ -347,7 +349,7 @@ await new AxeBuilder({ page }).disableRules(["<ID DE LA REGLE>"]).analyze();
 Playwright permet d'ouvrir de nouveaux onglets, ou même de nouveau contextes de navigation.
 
 ```js
-test("Opening a new tab", async ({ page, browser }) => {
+test("Opening a new tab", async ({ page, browser, context }) => {
   const anotherPageInNewContext = await (await browser.newContext()).newPage();
   const anotherPageInCurrentContext = await context.newPage();
 });
