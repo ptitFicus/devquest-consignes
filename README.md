@@ -91,7 +91,7 @@ Pour commencez, créer un fichier `hero-management.js` dans le dossiers `tests` 
 ```js
 test("Title should be displayed", async ({ page }) => {
   // Fait naviguer l'onglet vers l'adresse donnée
-  await page.goto("http://localhost:9001/landing-page");
+  await page.goto("http://localhost:8080/landing-page");
 
   // Décrit à playwright comment trouver l'élément qui nous intéresse
   const headerLocator = page.getByRole("heading", {
@@ -142,7 +142,7 @@ page.getByLabel("<LE LABEL DU CHAMP>"); // Permet de sélectionner un champ de f
 await page.getByLabel("<>").fill("devquest"); // Rempli un champ de formulaire textuel
 await page.getByRole("link", { name: "<NOM DU LIEN>" }).click(); // Click sur un lien, marche aussi avec "button"
 
-await expect(page).toHaveUrl("http://localhost:9001/"); // Fait un assert sur l'URL attendue
+await expect(page).toHaveUrl("http://localhost:8080/"); // Fait un assert sur l'URL attendue
 
 await expect(page.getByRole(/*XXX*/)).toBeVisible(); // Sélectionne l'élément avec le rôle donné et vérifie qu'il est visible
 await expect(page.getByText("<TEXT>")).toBeVisible(); // Vérifie que le texte donné est visible sur la page
@@ -277,7 +277,7 @@ await page.route("/<ROUTE_TO_MOCK>", async (route) => {
 
 [En vous aidant de cette page](https://playwright.dev/docs/mock#mocking-with-har-files) enregistrez l'ensemble des appels au backend au format HAR, de manière à pouvoir les rejouer lorsqu'une variable d'environnement `CI` est présente.
 
-Utilisez une seed fixe pour vous assurez que le test soit reproductible lorsque les "vrais appels" sont effectués.
+Utilisez une seed fixe pour vous assurez que le test soient reproductibles lorsque les "vrais appels" sont effectués.
 
 C'est particulièrement utile si vous souhaitez pouvoir tester votre frontend en isolation du backend.
 
