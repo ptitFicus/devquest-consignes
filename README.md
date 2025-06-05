@@ -21,7 +21,7 @@
 - [Tests de non régression d'accessibilité](#tests-de-non-régression-daccessibilité)
 - [Tests multi onglets](#tests-multi-onglets)
 - [Bonus : Playwright sans les tests](#bonus-playwright-sans-les-tests)
-- [Bonsu final : Page object model](#bonsu-final-page-object-model)
+- [Bonus final : Page object model](#bonus-final-page-object-model)
 
 ## Mise en place
 
@@ -398,7 +398,7 @@ import { chromium } from "playwright";
 })();
 ```
 
-## Bonsu final : Page object model
+## Bonus final : Page object model
 
 Lorsque les tests s'accumulent, le code peut vite devenir redondant.
 
