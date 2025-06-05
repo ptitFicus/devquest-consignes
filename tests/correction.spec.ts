@@ -1,5 +1,5 @@
 import AxeBuilder from "@axe-core/playwright";
-import { test, expect } from "@playwright/test";
+import { test, expect, Page } from "@playwright/test";
 
 test.beforeEach(async ({ page }) => {
   fetch("http://localhost:8080/api/_reset", {
@@ -56,6 +56,105 @@ test("Group creation", async ({ page }) => {
   await page.getByRole("heading", { name: "Thamior Ombrefeuille" }).click();
   await page.getByText("Gromrak Brisecasque 🍺 A vid").click();
 });
+
+// BONUS SI VOUS ÊTES EN AVANCE
+test("reroll should lower money while possible", async ({ page }) => {
+  await buildGroupe(page);
+  const rerollButton = page.getByRole("button", { name: "Reroll" });
+  await expect(page.getByTestId("money").getByText("6000")).toBeVisible();
+  await rerollButton.click();
+  await expect(page.getByTestId("money").getByText("5000")).toBeVisible();
+  await rerollButton.click();
+  await rerollButton.click();
+  await rerollButton.click();
+  await rerollButton.click();
+  await rerollButton.click();
+  await expect(rerollButton).toBeDisabled();
+});
+
+async function questNames(page) {
+  const questList = await page
+    .getByRole("button", { name: "commencer" })
+    .locator("..")
+    .all();
+
+  return await Promise.all(questList.map((q) => q.textContent()));
+}
+
+test("reroll should update quest list", async ({ page }) => {
+  await buildGroupe(page);
+
+  const currentQuests = await questNames(page);
+  const currentQuestsCheck = await questNames(page);
+  expect(currentQuests).toEqual(currentQuestsCheck); // Consistency check
+
+  await page.getByRole("button", { name: "Reroll" }).click();
+
+  const newQuests = await questNames(page);
+  expect(currentQuests).not.toEqual(newQuests);
+});
+
+async function intializeWithSeed(
+  page: Page,
+  seed: number,
+  heroCount: number = 0
+) {
+  await page.goto("/");
+  await page.getByLabel("Choisissez").fill("devquest");
+  await page.getByLabel("Seed").fill("" + seed);
+  await page.getByRole("button", { name: "Commencer" }).click();
+
+  if (heroCount > 0) {
+    await page.getByRole("link", { name: "Crée ton équipe !" }).click();
+    for (let i = 0; i < heroCount; i++) {
+      await page.getByRole("button", { name: "Recruter" }).nth(0).click();
+    }
+
+    await page.getByRole("button", { name: "Créer le groupe" }).click();
+  }
+}
+
+test("Adding a member to the group should lower money", async ({ page }) => {
+  await intializeWithSeed(page, 3, 2);
+  await page.getByRole("link", { name: "Compléter l'équipe" }).click();
+  await page.getByRole("button", { name: "Recruter" }).nth(0).click();
+  await page.getByRole("button", { name: "Mettre à jour le groupe" }).click();
+  await expect(page.getByTestId("money").getByText("7000")).toBeVisible();
+
+  await page.getByRole("link", { name: "Compléter l'équipe" }).click();
+  await page.getByRole("button", { name: "Recruter" }).nth(0).click();
+  await expect(
+    page.getByRole("button", { name: "Recruter" })
+  ).not.toBeVisible();
+  await page.getByRole("button", { name: "Mettre à jour le groupe" }).click();
+  await expect(
+    page.getByRole("link", { name: "Compléter l'équipe" })
+  ).not.toBeVisible();
+});
+
+test("hero invocation", async ({ page }) => {
+  await intializeWithSeed(page, 3);
+  await page.getByRole("link", { name: "Crée ton équipe !" }).click();
+  await page.getByRole("button", { name: "Invoquer un nouveau héro" }).click();
+  await page.getByRole("textbox", { name: "Nom" }).fill("benjamin");
+  await page.getByLabel("Classe").selectOption("wizard");
+  await page
+    .getByRole("textbox", { name: "Exploits (1 exploit / ligne)" })
+    .fill(
+      "A presque fini de préparer son codelab avant le jour j\nA passer 2 fois plus de temps à coder ce jeu nul que le corrigé"
+    );
+  await page
+    .getByRole("button", { name: "Invoquer le héro (1000 💰)" })
+    .click();
+  await page
+    .getByRole("button", { name: "Recruter benjamin (1000💰)" })
+    .click();
+  await page.getByRole("button", { name: "Créer le groupe" }).click();
+  await expect(page.getByTestId("money").getByText("9000")).toBeVisible();
+  await expect(page.getByText("benjamin")).toBeVisible();
+});
+
+// FIN DES BONUS
 
 async function buildGroupe(page) {
   await page.goto("/");

@@ -28,6 +28,13 @@ Enfin, copier / coller le contenu du fichier `playwright.config.ts` à la place 
 
 [La doc](https://playwright.dev/docs/intro#installing-playwright)
 
+## Mise en place - application de test
+
+L'application à tester est disponible sous plusieurs formats :
+
+- Un conteneur docker téléchargeable depuis docker hub en faisant `docker pull ptitficus/playwright`
+- Des fichiers binaires disponibles ici https://github.com/ptitFicus/devquest/tree/main/bin
+
 ## Premier test
 
 ### Anatomie d'un test
