@@ -230,7 +230,7 @@ Il y a deux moyens de régler ce problème : bouchonner les appels ou utiliser l
 Dans un premier temps nous allons utiliser un bouchon.
 
 ```js
-await page.route("/<ROUTE_TO_MOCK>", async (route) => {
+await page.route(/.*/url/to/mock/.*/, async (route) => {
   await route.fullfill({
     json: /* JSON DATA */,
     status: /* status code */
