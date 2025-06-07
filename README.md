@@ -3,7 +3,7 @@
 ## Table des matières
 
 - [Mise en place](#mise-en-place)
-- [Mise en place - application de test](#mise-en-place-application-de-test)
+- [Mise en place - application de test](#application-de-test)
 - [Premier test](#premier-test)
   - [Anatomie d'un test](#anatomie-dun-test)
 - [C'est parti !](#cest-parti-)
@@ -20,8 +20,8 @@
 - [Non régression visuelle](#non-régression-visuelle)
 - [Tests de non régression d'accessibilité](#tests-de-non-régression-daccessibilité)
 - [Tests multi onglets](#tests-multi-onglets)
-- [Bonus : Playwright sans les tests](#bonus-playwright-sans-les-tests)
-- [Bonus final : Page object model](#bonus-final-page-object-model)
+- [Bonus - Playwright sans les tests](#bonus-playwright-sans-les-tests)
+- [Bonus final - Page object model](#bonus-final-page-object-model)
 - [Corrigé](#correction)
 
 ## Mise en place
@@ -46,7 +46,7 @@ Enfin, copier / coller le contenu du fichier [playwright.config.ts](playwright.c
 
 [La doc](https://playwright.dev/docs/intro#installing-playwright)
 
-## Mise en place - application de test
+## Application de test
 
 L'application à tester est disponible sous plusieurs formats :
 
