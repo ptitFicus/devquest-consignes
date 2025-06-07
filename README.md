@@ -22,6 +22,7 @@
 - [Tests multi onglets](#tests-multi-onglets)
 - [Bonus : Playwright sans les tests](#bonus-playwright-sans-les-tests)
 - [Bonus final : Page object model](#bonus-final-page-object-model)
+- [Corrigé](#correction)
 
 ## Mise en place
 
