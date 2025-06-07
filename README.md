@@ -59,11 +59,7 @@ L'application à tester est disponible sous plusieurs formats :
 - Des fichiers binaires disponibles ici https://github.com/ptitFicus/devquest/tree/main/bin
 - Un jar (nécessite un jre 17+) disponible ici https://github.com/ptitFicus/devquest/blob/main/hero-management.jar
 
-Pour éxécuter le binaore sous mac, il peut être nécessaire de le sortir de quarantaine :
-
-```sh
-sudo xattr -r -d com.apple.quarantine macos-arm
-```
+Par défaut, l'application démarre sur le port 8080.
 
 ## Premier test
 
