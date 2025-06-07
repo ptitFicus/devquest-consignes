@@ -38,13 +38,7 @@ Concernant JavaSrcript / Typescript je vous laisse décider.
 Une fois tout installé, lancez la commande suivante pour vérifier l'installation.
 
 ```sh
-npx playwright test --trace on
-```
-
-Vous aurez également besoin du codegen
-
-```sh
-npx playwright codegen
+npx playwright test
 ```
 
 Enfin, copier / coller le contenu du fichier [playwright.config.ts](playwright.config.ts) à la place du votre.
