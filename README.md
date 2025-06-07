@@ -20,8 +20,8 @@
 - [Non régression visuelle](#non-régression-visuelle)
 - [Tests de non régression d'accessibilité](#tests-de-non-régression-daccessibilité)
 - [Tests multi onglets](#tests-multi-onglets)
-- [Bonus - Playwright sans les tests](#bonus-playwright-sans-les-tests)
-- [Bonus final - Page object model](#bonus-final-page-object-model)
+- [Bonus - Playwright sans les tests](#bonus--playwright-sans-les-tests)
+- [Bonus final - Page object model](#bonus-final--page-object-model)
 - [Corrigé](#correction)
 
 ## Mise en place
