@@ -399,3 +399,12 @@ L'idée est de représenter chaque page de votre application par une classe Java
 ### Ce qu'il faut faire
 
 [Lisez la documentation sur les page object models](https://playwright.dev/docs/pom) et implémentez ce pattern dans vos tests.
+
+
+## Correction
+
+La correction de tous les exercices et bonus (sauf les deux derniers) est disponibles dans le fichier [correction.spec.ts](./tests/correction.spec.ts).
+
+La correction de l'avant dernier bonus "Playwright sans les tests" est disponible dans le fichier [experimentation.ts](./src/experimentation.ts).
+
+Le dernier bonus "Page object model" n'a pas de correction parce que je n'ai pas encore pris le temps de le faire, n'hésitez pas à m'envoyer une Pull Request !
