@@ -47,7 +47,7 @@ Vous aurez également besoin du codegen
 npx playwright codegen
 ```
 
-Enfin, copier / coller le contenu du fichier `playwright.config.ts` à la place du votre.
+Enfin, copier / coller le contenu du fichier [playwright.config.ts](playwright.config.ts) à la place du votre.
 
 [La doc](https://playwright.dev/docs/intro#installing-playwright)
 
