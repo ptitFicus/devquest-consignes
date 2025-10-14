@@ -211,10 +211,18 @@ Vérifiez que le beforeEach fonctionne correctement en modifiant les tests préc
 2. Vérifier que les boutons de recrutement disparaissent de l'écran de sélection des héros lorsque vous en avez 4.
 3. Vérifiez que l'écran principal vous propose de compléter votre groupe si il comporte moins de 4 héros.
 
+<details>
+  <summary>Spoiler (cliquez pour voir)</summary>
+  <ul>
+    <li>Pour faire un assert sur la non visibilité d'un élément, utilisez le modificateur ".not" <code>page.getByRole("button", {name: "Recruter"}).not.toBeVisible()</code></li>
+  </ul>
+</details>
+
 ### Invocation d'un héro
 
 1. Vérifier que le héro invoqué est bien ajouté à la liste
 2. Vérifier que le héro invoqué peut-être ajoutée au groupe.
+
 
 ## Bouchons
 
