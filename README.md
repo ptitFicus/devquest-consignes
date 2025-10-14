@@ -214,7 +214,7 @@ Vérifiez que le beforeEach fonctionne correctement en modifiant les tests préc
 <details>
   <summary>Spoiler (cliquez pour voir)</summary>
   <ul>
-    <li>Pour faire un assert sur la non visibilité d'un élément, utilisez le modificateur ".not" <code>page.getByRole("button", {name: "Recruter"}).not.toBeVisible()</code></li>
+    <li>Pour faire un assert sur la non visibilité d'un élément, utilisez le modificateur ".not" <code>await expect(page.getByRole("button", {name: "Recruter"})).not.toBeVisible()</code></li>
   </ul>
 </details>
 
