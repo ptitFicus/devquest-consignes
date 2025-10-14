@@ -231,7 +231,7 @@ Lorsque vous vous lancez dans une quête avec votre groupe de héros :
 - Une quête peut être soit échouée soit réussie, si elle est réussie elle rapporte une récompense liée à sa difficulté
 - Que la quête soit réussie ou non, des héros peuvent y avoir laissé la vie
 
-Ces deux éléments son aléatoires, ce qui rend les tests complexes.
+Ces deux éléments sont aléatoires, ce qui rend les tests complexes.
 
 Il y a deux moyens de régler ce problème : bouchonner les appels ou utiliser le système de seed.
 
