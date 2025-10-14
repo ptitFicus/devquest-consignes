@@ -179,30 +179,61 @@ async function buildGroupe(page) {
   await expect(page).toHaveURL("/");
 }
 
-test("Stub quest result", async ({ page }) => {
-  let name = "";
-  await page.route(/.*\/api\/quetes\/.*\/_commencer/, async (route) => {
-    const url = new URL(route.request().url());
-    name = decodeURIComponent(
-      url.pathname.replace("/api/quetes/", "").replace("/_commencer", "")
+async function stubQuestResult(
+  page: Page,
+  deaths: string[] = [],
+  gain?: Number
+) {
+  await page.route("**/_commencer", async (route) => {
+    const url = route.request().url();
+    const questName = decodeURIComponent(
+      url.replaceAll(/.*\/quetes\//g, "").replaceAll("/_commencer", "")
     );
+
     await route.fulfill({
       json: {
-        name: name,
-        morts: ["Sir Belric de Griseval"],
+        morts: deaths,
+        name: questName,
+        gain: gain,
       },
     });
   });
+}
 
+test("quest result should display correctly is quest succeeded", async ({
+  page,
+}) => {
   await buildGroupe(page);
-  await page.getByRole("button", { name: "commencer" }).nth(0).click();
+  await stubQuestResult(page, ["Sir Belric de Griseval"], 100);
+  await page.getByRole("button", { name: "commencer" }).first().click();
 
-  const dialog = page.getByRole("dialog");
-  await expect(dialog.getByText(name)).toBeVisible();
   await expect(
-    dialog.getByRole("heading", { name: "Les héros suivants sont tombé" })
+    page.getByRole("dialog").getByText(/La quête ".*" est un succès/)
   ).toBeVisible();
-  await expect(dialog.getByText("Sir Belric de Griseval")).toBeVisible();
+
+  await expect(page.getByText("🪦 Sir Belric de Griseval")).toBeVisible();
+  await expect(page.getByText("Vous avez gagné 100 💰")).toBeVisible();
+
+  await page.getByRole("button", { name: "OK" }).click();
+  await expect(page.getByRole("dialog")).not.toBeVisible();
+});
+
+test("quest result should display correctly is quest failed", async ({
+  page,
+}) => {
+  await buildGroupe(page);
+  await stubQuestResult(page, ["Sir Belric de Griseval"]);
+  await page.getByRole("button", { name: "commencer" }).first().click();
+
+  await expect(
+    page.getByRole("dialog").getByText(/La quête ".*" a échoué/)
+  ).toBeVisible();
+
+  await expect(page.getByText("🪦 Sir Belric de Griseval")).toBeVisible();
+  await expect(page.getByText("Vous avez gagné")).not.toBeVisible();
+
+  await page.getByRole("button", { name: "OK" }).click();
+  await expect(page.getByRole("dialog")).not.toBeVisible();
 });
 
 test("HAR record", async ({ page }) => {
@@ -267,6 +298,17 @@ test("accessibility", async ({ page }) => {
     .disableRules(["region"])
     .analyze();
   expect(result.violations).toHaveLength(0);
+});
+
+test("aria snapshot", async ({ page }) => {
+  await page.goto("/landing-page");
+  await expect(page.getByRole("document")).toMatchAriaSnapshot(`
+      - heading "Bienvenue aventurier !" [level=1]
+      - text: Choisissez un nom
+      - textbox "Choisissez un nom"
+      - text: Seed
+      - spinbutton "Seed"
+      - button "Commencer l'aventure !"`);
 });
 
 test("multi tabs", async ({ page, context }) => {
