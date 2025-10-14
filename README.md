@@ -325,7 +325,7 @@ await page.setViewportSize({ width: 750, height: 750 });
 
 ## Tests de non régression d'accessibilité
 
-Les tests de non régression d'accessibility permettent de garantir que l'accessibilité d'une page ne se dégrade pas au cours du temps, en s'appuyant sur un certain nombre de règles vérifiables automatiquement.
+Les tests de non régression d'accessibilité permettent de garantir que l'accessibilité d'une page ne se dégrade pas au cours du temps, en s'appuyant sur un certain nombre de règles vérifiables automatiquement.
 
 ⚠️⚠️⚠️
 **L'accessibilité ne peut être vérifiée en intégralité automatiquement, ce n'est pas parce que les vérifications automatique ne trouvent rien que votre site est accessible**
