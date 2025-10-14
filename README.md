@@ -163,9 +163,9 @@ Voici ce que le test devra faire
 2. Aller sur la page de création de groupe
 3. Sélectionner 4 héros
 4. Créer le groupe
-5. Vérifier que les héros sélectionnés sont bien présents sur la page d'accueil
+5. Vérifier que les héros sélectionnés sont bien présents **sur la page d'accueil**
 
-Copiez / collez le code généré dans un nouveau test, nettoyer le en retirant les lignes qui vous semblent inutile et rajouter des `expect` là ou c'est nécessaire.
+Copiez / collez le code généré dans un nouveau test, nettoyer le en retirant les lignes qui vous semblent inutiles et rajouter des `expect` là ou c'est nécessaire.
 
 ## BeforeEach
 
