@@ -359,6 +359,35 @@ Il reste une erreur d'accessibilité sur la landing page, précisez au test de l
 await new AxeBuilder({ page }).disableRules(["<ID DE LA REGLE>"]).analyze();
 ```
 
+
+## Non régression de l'arbre d'accessibilité
+
+Comme nous l'avons vu dans les sections précédentes, Playwright permet une approche très programmatique des vérifications (en sélectionnant les éléments via les locators et vérifiant leurs attributs) mais aussi une approche purement visuelle (via le snapshot testing).
+
+Un entre-deux existe, qui permet de tester la non régression de l'arbre d'accessibilité.
+
+```js
+await expect(page.getByRole("document")).toMatchAriaSnapshot(`
+  - heading "Coucou je suis un titre" [level=1]
+  - text: Quel est votre nom ?
+  - textbox "Choisissez un nom"
+  - button "C'est mon nom !"`);
+```
+
+La méthode `toMatchAriaSnapshot` permet en effet de comparer le contenu d'un locator donné à une représentation textuelle de l'arbre d'accessibilité.
+
+Cet arbe d'accessibilité peut omettre des éléments, ou même leur contenu textuel.
+
+Il s'agit donc d'un mode de test assez résilient et très lisible, mais qui offre des garanties moins "strictes" que les deux autres.
+
+[La documentation associée](https://playwright.dev/docs/aria-snapshots)
+
+### Ce qu'il faut faire
+
+Écrivez un test de non régression basé sur le snapshot d'accessibilité pour la landing page.
+
+Le contenu de l'arbe peut-être obtenu facilement via le codegen ou vscode.
+
 ## Tests multi onglets
 
 Playwright permet d'ouvrir de nouveaux onglets, ou même de nouveau contextes de navigation.
