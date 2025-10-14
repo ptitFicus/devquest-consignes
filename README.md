@@ -238,7 +238,9 @@ Il y a deux moyens de régler ce problème : bouchonner les appels ou utiliser l
 Dans un premier temps nous allons utiliser un bouchon.
 
 ```js
-await page.route(/.*\/url\/to\/mock\/.*/, async (route) => {
+
+await page.route("**/mon/url", async (route) => {
+// ou alors await page.route(/.*\/url\/as\/regex\/.*/, async (route) => {
   await route.fullfill({
     json: /* JSON DATA */,
     status: /* status code */
