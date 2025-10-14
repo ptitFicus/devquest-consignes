@@ -228,7 +228,7 @@ Vérifiez que le beforeEach fonctionne correctement en modifiant les tests préc
 
 Lorsque vous vous lancez dans une quête avec votre groupe de héros :
 
-- Une quête peut être soit échouée soit réussie, si elle est réussie elle rapporte une récompense liée à sa difficuluté
+- Une quête peut être soit échouée soit réussie, si elle est réussie elle rapporte une récompense liée à sa difficulté
 - Que la quête soit réussie ou non, des héros peuvent y avoir laissé la vie
 
 Ces deux éléments son aléatoires, ce qui rend les tests complexes.
