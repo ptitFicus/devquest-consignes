@@ -143,7 +143,7 @@ Une fois le formulaire rempli et le bouton pressé, votre test doit vérifier qu
 
 1. on arrive bien sur l'url "/"
 2. Le titre "Hero manager" est visible
-3. Le nom d'utilisateur saisi dans le formulaure est visible
+3. Le nom d'utilisateur saisi dans le formulaire est visible
 
 ⚠️⚠️⚠️
 **N'oubliez pas les `await`**
