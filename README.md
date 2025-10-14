@@ -251,7 +251,7 @@ await page.route(/.*\/url\/to\/mock\/.*/, async (route) => {
 ### Ce qu'il faut faire
 
 1. À l'aide des devtools du navigateur, analysez le traffic http (endpoint / format de réponse) lors de la réalisation d'une quête
-2. En vous aidant de l'extrait de code ci-dessus, testez le bon affichage des quêtes réussies et échouées
+2. En vous aidant de l'extrait de code ci-dessus, testez le bon affichage des quêtes réussies et échouées. Le but est uniquement de tester le contenu de la dialog, la situation de jeu est mise à jour via un autre endpoint !
 
 Pour faire des assertions plus précises et éviter les répétitions, il est possible de chaîner des locators :
 
@@ -262,6 +262,11 @@ page.getByRole("dialog").getByText("<MON TEXTE>");
 const dialog = page.getByRole("dialog");
 dialog.getByText("<MON TEXTE>");
 ```
+
+<details>
+  <summary>Spoilers (cliquez pour afficher)</summary>
+  Pour sélectionner le premier élément d'un locator, utilisez ".first()" : <code>await page.getByRole(/* TODO */).first().click();</code>
+</details>
 
 ### Bonus
 
