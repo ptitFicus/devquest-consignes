@@ -196,6 +196,11 @@ Vérifiez que le beforeEach fonctionne correctement en modifiant les tests préc
 2. Vérifiez qu'il est bien désactivé lorsque l'argent est insuffisant.
 3. Vérifiez que le bouton génère bien une nouvelle liste de quête lorsque l'on clique dessus
 
+<details>
+  <summary>Spoiler (cliquez pour voir)</summary>
+  Pour lire le montant d'argent actuellement possédé, utilisez son attribut [data-testid](https://playwright.dev/docs/locators#locate-by-test-id)
+</details>
+
 ### Composition de l'équipe
 
 1. Vérifiez que la somme d'argent restante diminue bien lorsqu'un groupe est créé (-1000 par nouvel aventurier).
