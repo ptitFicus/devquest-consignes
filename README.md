@@ -196,6 +196,8 @@ Vérifiez que le beforeEach fonctionne correctement en modifiant les tests préc
 2. Vérifiez qu'il est bien désactivé lorsque l'argent est insuffisant.
 3. Vérifiez que le bouton génère bien une nouvelle liste de quête lorsque l'on clique dessus
 
+N'hésitez pas à alimenter le champ "seed" de la landing page pour avoir toujours les mêmes données !
+
 <details>
   <summary>Spoiler (cliquez pour voir)</summary>
   <ul>
