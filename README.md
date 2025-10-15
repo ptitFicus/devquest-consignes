@@ -345,8 +345,10 @@ await page.route("**/api/**", async (route, request) => {
 });
 ```
 
-- Coupez votre backend et relancez le avec le paramètre `--nobackend=true`, avec ce paramètre l'application devrait être inutilisable (le front est servie, l'endpoint de reset fonctionne, tous le reste renvoie des 500).
+- Coupez votre backend et relancez le avec le paramètre `--nobackend=true`, avec ce paramètre l'application devrait être inutilisable (le front est servie, l'endpoint de reset fonctionne, tous le reste renvoie des 500). Avec docker, vous pouvez relancer l'application en faisant `docker run -p 8080:8080 -e JAVA_TOOL_OPTIONS="-Dnobackend=true" ptitficus/playwright`
 - Relancez vos tests en valorisant la variable d'environnement CI : `CI=true npx playwright test`
+
+⚠️⚠️⚠️ Une fois que vous avez fini avec cette section, n'oubliez pas de relance l'application sans le `--nobackend=true` ⚠️⚠️⚠️
 
 ## Non régression visuelle
 
