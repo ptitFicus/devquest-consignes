@@ -191,6 +191,7 @@ Pour cela appeler l'endpoint `/api/_reset` du backend (il faut faire un `DELETE`
 ```js
 test.beforeEach(async ({ page }) => {
   // ce code sera exécuté avant chaque test
+  await fetch("http://localhost:8080/api/_reset", { method: "DELETE" });
 });
 ```
 
