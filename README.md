@@ -258,7 +258,7 @@ Dans cette section nous allons utiliser un bouchon.
 
 await page.route("**/mon/url", async (route) => {
 // ou alors await page.route(/.*\/url\/as\/regex\/.*/, async (route) => {
-  await route.fullfill({
+  await route.fulfill({
     json: /* JSON DATA */,
     status: /* status code */
   })
@@ -298,7 +298,7 @@ await page.route("/<ROUTE_TO_MOCK>", async (route) => {
 
   const request = route.request(); // Récupération de la requête
 
-  await route.fullfill({
+  await route.fulfill({
     json: /* JSON DATA */,
     status: /* status code */
   })
