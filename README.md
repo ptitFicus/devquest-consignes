@@ -215,7 +215,7 @@ N'hésitez pas à alimenter le champ "seed" de la landing page pour avoir toujou
 <details>
   <summary>Spoiler (cliquez pour voir)</summary>
   <ul>
-    <li>Pour lire le montant d'argent actuellement possédé, utilisez son attribut [data-testid](https://playwright.dev/docs/locators#locate-by-test-id)</li>
+    <li>Pour lire le montant d'argent actuellement possédé, utilisez son attribut <a href="https://playwright.dev/docs/locators#locate-by-test-id">data-testid</a></li>
     <li>Récupérer le nom des quêtes est assez complexe, une solution est de partir des boutons "commencer" et de "remonter" le sélecteur d'un cran en faisant <code>bouton.locator("..")</code></li>
     <li>Pour faire un assert sur une différence, utilisez le modificateur ".not" <code>expect(oldQuests).not.toEqual(newQuests)</code></li>
   </ul>
