@@ -120,15 +120,28 @@ npx playwright test --ui
 
 Enfin, Playwright dispose d'un excellent plugin VScode qui permet de lancer les tests directement depuis l'éditeur.
 
+
+## On se concentre sur Chromium
+
+Comme vous avez pu le voir dans l'exécution de ce premier test, les tests s'exécutent sur firefox et chrome (Playwright supporte également edge et safari).
+
+Pour gagner du temps dans la suite de ce hand's on, nous allons pour la suite nous concentrer surtout sur le navigateur chromium.
+
+Pour cela, copiez / collez le contenu de [playwright-chromium.config.ts](playwright-chromium.config.ts) à la place de votre fichier `playwright.config.ts`.
+
 ## À vous de jouer
 
 Écrivez un premier test permettant de remplir le formulaire de la landing page et de passer à la page suivante.
 
 Ne vous embêter pas avec le champ seed, saisissez juste un nom.
 
+Le formulaire à remplir se trouve à [http://localhost:8080/landing-page](http://localhost:8080/landing-page).
+
 Vous aurez besoin des éléments suivants:
 
 ```js
+await page.goto("http://localhost:8080/UNE_URL"); // fait naviguer l'onglet actuel jusqu'à l'url donnée
+
 page.getByLabel("<LE LABEL DU CHAMP>"); // Permet de sélectionner un champ de formulaire par label
 await page.getByLabel("<>").fill("devquest"); // Rempli un champ de formulaire textuel
 await page.getByRole("link", { name: "<NOM DU LIEN>" }).click(); // Click sur un lien, marche aussi avec "button"
