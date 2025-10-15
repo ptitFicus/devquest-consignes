@@ -211,9 +211,7 @@ L'appel de cet endpoint provoque l'abandon de la partie en cours.
 
 1. Vérifiez que le bouton reroll (visible lorsqu'un groupe est configuré) diminue bien l'argent (en haut à droite de l'écran) de 1000 à chaque utilisation.
 2. Vérifiez qu'il est bien désactivé lorsque l'argent est insuffisant.
-3. Vérifiez que le bouton génère bien une nouvelle liste de quête lorsque l'on clique dessus
-
-N'hésitez pas à alimenter le champ "seed" de la landing page pour avoir toujours les mêmes données !
+3. Vérifiez que le bouton génère bien une nouvelle liste de quêtes lorsque l'on clique dessus. Cet exercice peut s'avérer assez complexe car les quêtes changent à chaque nouvelle aventure. Pour régler ce problème vous pouvez soit fixer la "seed" sur la landing page dans votre test pour éliminer l'aléatoire, soit récupérer les noms de quêtes affichés avant / après pour vous assurez de leur différence.
 
 <details>
   <summary>Spoiler (cliquez pour voir)</summary>
