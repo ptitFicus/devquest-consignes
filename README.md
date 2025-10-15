@@ -252,7 +252,7 @@ Ces deux éléments sont aléatoires, ce qui rend les tests complexes.
 
 Il y a deux moyens de régler ce problème : bouchonner les appels ou utiliser le système de seed.
 
-Dans un premier temps nous allons utiliser un bouchon.
+Dans cette section nous allons utiliser un bouchon.
 
 ```js
 
