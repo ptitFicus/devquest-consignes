@@ -170,15 +170,19 @@ Nous allons utiliser le codegen pour écrire un autre test, tout d'abord lancez 
 npx playwright codegen
 ```
 
-Voici ce que le test devra faire
+### Ce qu'il faut faire
 
-1. Passer le formulaire de la landing page en y saissant un nom (comme précédemment)
-2. Aller sur la page de création de groupe
-3. Sélectionner 4 héros
-4. Créer le groupe
-5. Vérifier que les héros sélectionnés sont bien présents **sur la page d'accueil**
+Écriver un test qui
+
+1. passe le formulaire de la landing page en y saissant un nom (comme précédemment)
+2. va sur la page de création de groupe
+3. sélectionn 4 héros
+4. Crée le groupe
+5. Vérifie que les héros sélectionnés sont bien présents **sur la page d'accueil**
 
 Copiez / collez le code généré dans un nouveau test, nettoyer le en retirant les lignes qui vous semblent inutiles et rajouter des `expect` là ou c'est nécessaire.
+
+Pour vous facilitez la vie pour la suite, vous pouvez factorisez la création d'un groupe dans une fonction prenant la `page` courante en entrée.
 
 ## BeforeEach
 
