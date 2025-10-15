@@ -186,7 +186,7 @@ Nos tests modifient l'état interne de l'application, ce qui risque d'avoir des 
 
 Pour régler ce souci, nous allons réinitialiser l'application avant chaque test.
 
-Pour cela appeler l'endpoint `/api/_reset` du backend (il faut faire un `DELETE` dessus) dans un `beforeEach`.
+Pour cela, il faut appeler l'endpoint `/api/_reset` du backend (il faut faire un `DELETE` dessus) dans un `beforeEach`.
 
 ```js
 test.beforeEach(async ({ page }) => {
@@ -200,7 +200,10 @@ Cela signifie que vous pouvez utilisez n'importe quelle dépendance node pour in
 
 L'appel de cet endpoint provoque l'abandon de la partie en cours.
 
-Vérifiez que le beforeEach fonctionne correctement en modifiant les tests précédents pour ne plus aller explicitement sur `landing-page`, mais sur `/` (la page `/` redirige vers `landing-page` lorsqu'aucune partie n'est en cours).
+### Ce qu'il faut faire
+
+- Vérifiez que le beforeEach fonctionne correctement en modifiant les tests précédents pour ne plus aller explicitement sur `landing-page`, mais sur `/` (la page `/` redirige vers `landing-page` lorsqu'aucune partie n'est en cours).
+- Factorisez le remplissage du nom d'aventurier dans le beforeEach.
 
 ## Plein de bonus si vous êtes en avance
 
