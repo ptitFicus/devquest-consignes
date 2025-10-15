@@ -133,7 +133,7 @@ page.getByLabel("<LE LABEL DU CHAMP>"); // Permet de sélectionner un champ de f
 await page.getByLabel("<>").fill("devquest"); // Rempli un champ de formulaire textuel
 await page.getByRole("link", { name: "<NOM DU LIEN>" }).click(); // Click sur un lien, marche aussi avec "button"
 
-await expect(page).toHaveUrl("http://localhost:8080/"); // Fait un assert sur l'URL attendue
+await expect(page).toHaveURL("http://localhost:8080/"); // Fait un assert sur l'URL attendue
 
 await expect(page.getByRole(/*XXX*/)).toBeVisible(); // Sélectionne l'élément avec le rôle donné et vérifie qu'il est visible
 await expect(page.getByText("<TEXT>")).toBeVisible(); // Vérifie que le texte donné est visible sur la page
