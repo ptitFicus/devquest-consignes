@@ -315,7 +315,38 @@ await page.route("/<ROUTE_TO_MOCK>", async (route) => {
 
 Utilisez une seed fixe pour vous assurez que le test soient reproductibles lorsque les "vrais appels" sont effectués.
 
-C'est particulièrement utile si vous souhaitez pouvoir tester votre frontend en isolation du backend.
+Ces bouchons au format HAR peuvent s'avérer particulièrement utiles si vous souhaitez pouvoir tester votre frontend en isolation du backend.
+
+### Méga bonus (promis après on passe à autre chose)
+
+Rejouez les tests en désactivant les endpoints du backend de manière à ce que le rejeux se fasse en se basant sur les fichiers HARs de l'étape précédente.
+
+Pour cela : 
+
+- Copiez le code ci-dessous SOUS votre bloc de code utilisant `routeFromHAR`
+
+```js
+// Playwright s'emmêle les pinceaux dans les requêtes successives
+// à un même endpoint, ce bout de code règle le problème
+// en incrémentant un header dédié à chaque appel
+const requestUrlToSequence = new Map();
+await page.route("**/api/**", async (route, request) => {
+  const url = request.url();
+
+  const previousRequestIndex = requestUrlToSequence.get(url) ?? 0;
+  const currentRequestIndex = previousRequestIndex + 1;
+  const headers = {
+    ...request.headers(),
+    "X-Playwright-Sequence": `${currentRequestIndex}`,
+  };
+  requestUrlToSequence.set(url, currentRequestIndex);
+
+  await route.fallback({ headers });
+});
+```
+
+- Coupez votre backend et relancez le avec le paramètre `--nobackend=true`, avec ce paramètre l'application devrait être inutilisable (le front est servie, l'endpoint de reset fonctionne, tous le reste renvoie des 500).
+- Relancez vos tests en valorisant la variable d'environnement CI : `CI=true npx playwright test`
 
 ## Non régression visuelle
 
