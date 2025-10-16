@@ -19,6 +19,7 @@
 - [Bouchons](#bouchons)
 - [Non régression visuelle](#non-régression-visuelle)
 - [Tests de non régression d'accessibilité](#tests-de-non-régression-daccessibilité)
+- [Tests de l'arbre d'accessibilité](#non-régression-de-larbre-daccessibilité)
 - [Tests multi onglets](#tests-multi-onglets)
 - [Bonus - Playwright sans les tests](#bonus--playwright-sans-les-tests)
 - [Bonus final - Page object model](#bonus-final--page-object-model)
@@ -243,6 +244,11 @@ L'appel de cet endpoint provoque l'abandon de la partie en cours.
 
 1. Vérifier que le héro invoqué est bien ajouté à la liste
 2. Vérifier que le héro invoqué peut-être ajoutée au groupe.
+
+
+### Fin de partie
+
+1. Vérifier qu'un écran de fin de partie s'affiche bien quand vous n'avez plus de héro et plus assez d'argent pour en recruter (utilisez le bouton reroll pour diminuer facilement votre argent).
 
 
 ## Bouchons
