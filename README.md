@@ -16,6 +16,7 @@
   - [Bouton de reroll](#bouton-de-reroll)
   - [Composition de l'équipe](#composition-de-léquipe)
   - [Invocation d'un héro](#invocation-dun-héro)
+  - [Fin de partie](#fin-de-partie)
 - [Bouchons](#bouchons)
 - [Non régression visuelle](#non-régression-visuelle)
 - [Tests de non régression d'accessibilité](#tests-de-non-régression-daccessibilité)
@@ -249,7 +250,7 @@ L'appel de cet endpoint provoque l'abandon de la partie en cours.
 ### Fin de partie
 
 1. Vérifier qu'un écran de fin de partie s'affiche bien quand vous n'avez plus de héro et plus assez d'argent pour en recruter (utilisez le bouton reroll pour diminuer facilement votre argent).
-
+2. Écrivez un test qui construit un groupe, fait des quêtes et vérifie que le nombre d'épée affichée à la fin de partie correspond bien aux quêtes qui ont été réussies (pour vous failitez la vie, vous pouvez fixer la seed, mais c'est possible sans).
 
 ## Bouchons
 
