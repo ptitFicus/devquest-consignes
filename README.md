@@ -145,7 +145,7 @@ Vous aurez besoin des éléments suivants:
 await page.goto("http://localhost:8080/UNE_URL"); // fait naviguer l'onglet actuel jusqu'à l'url donnée
 
 page.getByLabel("<LE LABEL DU CHAMP>"); // Permet de sélectionner un champ de formulaire par label
-await page.getByLabel("<>").fill("devquest"); // Rempli un champ de formulaire textuel
+await page.getByLabel("<>").fill("devquest"); // Remplit un champ de formulaire textuel
 await page.getByRole("link", { name: "<NOM DU LIEN>" }).click(); // Click sur un lien, marche aussi avec "button"
 
 await expect(page).toHaveURL("http://localhost:8080/"); // Fait un assert sur l'URL attendue
