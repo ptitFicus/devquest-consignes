@@ -300,7 +300,7 @@ dialog.getByText("<MON TEXTE>");
 
 ### Bonus
 
-Récupérer le nom de la quête dans la requête interceptée pour renvoyer un bouchon le plus fidèle possible à la réalité.
+Récupérez le nom de la quête dans la requête interceptée pour renvoyer un bouchon le plus fidèle possible à la réalité.
 
 La requête peut être récupérée de la façon suivante :
 
@@ -320,7 +320,7 @@ await page.route("/<ROUTE_TO_MOCK>", async (route) => {
 
 [En vous aidant de cette page](https://playwright.dev/docs/mock#mocking-with-har-files) enregistrez l'ensemble des appels au backend au format HAR, de manière à pouvoir les rejouer lorsqu'une variable d'environnement `CI` est présente.
 
-Utilisez une seed fixe pour vous assurez que le test soient reproductibles lorsque les "vrais appels" sont effectués.
+Utilisez une seed fixe pour vous assurer que le test soient reproductibles lorsque les "vrais appels" sont effectués.
 
 Ces bouchons au format HAR peuvent s'avérer particulièrement utiles si vous souhaitez pouvoir tester votre frontend en isolation du backend.
 
@@ -352,14 +352,14 @@ await page.route("**/api/**", async (route, request) => {
 });
 ```
 
-- Coupez votre backend et relancez le avec le paramètre `--nobackend=true`, avec ce paramètre l'application devrait être inutilisable (le front est servie, l'endpoint de reset fonctionne, tous le reste renvoie des 500). Avec docker, vous pouvez relancer l'application en faisant `docker run -p 8080:8080 -e JAVA_TOOL_OPTIONS="-Dnobackend=true" ptitficus/playwright`
+- Coupez votre backend et relancez le avec le paramètre `--nobackend=true`, avec ce paramètre l'application devrait être inutilisable (le front est servi, l'endpoint de reset fonctionne, tout le reste renvoie des 500). Avec docker, vous pouvez relancer l'application en faisant `docker run -p 8080:8080 -e JAVA_TOOL_OPTIONS="-Dnobackend=true" ptitficus/playwright`
 - Relancez vos tests en valorisant la variable d'environnement CI : `CI=true npx playwright test`
 
-⚠️⚠️⚠️ Une fois que vous avez fini avec cette section, n'oubliez pas de relance l'application sans le `--nobackend=true` ⚠️⚠️⚠️
+⚠️⚠️⚠️ Une fois que vous avez fini avec cette section, n'oubliez pas de relancer l'application sans le `--nobackend=true` ⚠️⚠️⚠️
 
 ## Non régression visuelle
 
-Les tests de non régressions visuels peuvent être utiles pour s'assurer qu'une page ou partie de la page ne change pas par accident.
+Les tests de non régression visuels peuvent être utiles pour s'assurer qu'une page ou partie de la page ne change pas par accident.
 
 Ils sont très simples et rapides à mettre en place, en revanche ils sont très sensibles au moindre changement graphique et sont donc à réserver pour des éléments n'ayant pas vocation à changer beaucoup.
 
@@ -370,7 +370,7 @@ await expect(page).toHaveScreenshot();
 Le test échouera la première fois, mais génèrera un screenshot "référence". Lors des exécutions suivantes, il comparera les nouveaux screenshots aux existants, et échouera si trop de pixels sont différents (ce seuil est paramétrable).
 
 ⚠️⚠️⚠️
-**En fonction des navigateurs et OS, le rendu changera faisant échouer ces tests. Pour généraliser leur usage il est donc nécessaire de les exécuter dans un environnement contrôlé (par exemple dans un conteneur docker).**
+**En fonction des navigateurs et OS, le rendu changera, faisant échouer ces tests. Pour généraliser leur usage il est donc nécessaire de les exécuter dans un environnement contrôlé (par exemple dans un conteneur docker).**
 
 [La documentation associée](https://playwright.dev/docs/test-snapshots)
 
@@ -414,7 +414,7 @@ Lancez un test d'accessibilité sur la landing page.
 
 ### Bonus
 
-Il reste une erreur d'accessibilité sur la landing page, précisez au test de l'ignorer lors de la vérification, pour cela il faut trouver l'id de l'erreur et préciser que l'onsouhaite l'ignorer :
+Il reste une erreur d'accessibilité sur la landing page, précisez au test de l'ignorer lors de la vérification, pour cela il faut trouver l'id de l'erreur et préciser que l'on souhaite l'ignorer :
 
 ```js
 await new AxeBuilder({ page }).disableRules(["<ID DE LA REGLE>"]).analyze();
@@ -462,7 +462,7 @@ test("Opening a new tab", async ({ page, browser, context }) => {
 
 ### Ce qu'il faut faire
 
-Ouvrez un nouvel onglet, puis vérifier que les modifications dans un onglet sont bien répertoriées dans le nouveau (en rechargeant la page).
+Ouvrez un nouvel onglet, puis vérifiez que les modifications dans un onglet sont bien répertoriées dans le nouveau (en rechargeant la page).
 
 ## Bonus : Playwright sans les tests
 
