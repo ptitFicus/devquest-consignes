@@ -178,13 +178,13 @@ npx playwright codegen
 
 1. passe le formulaire de la landing page en y saissant un nom (comme précédemment)
 2. va sur la page de création de groupe
-3. sélectionn 4 héros
+3. sélectionne 4 héros
 4. Crée le groupe
 5. Vérifie que les héros sélectionnés sont bien présents **sur la page d'accueil**
 
 Copiez / collez le code généré dans un nouveau test, nettoyer le en retirant les lignes qui vous semblent inutiles et rajouter des `expect` là ou c'est nécessaire.
 
-Pour vous facilitez la vie pour la suite, vous pouvez factorisez la création d'un groupe dans une fonction prenant la `page` courante en entrée.
+Pour vous faciliter la vie pour la suite, vous pouvez factoriser la création d'un groupe dans une fonction prenant la `page` courante en entrée.
 
 ## BeforeEach
 
@@ -202,7 +202,7 @@ test.beforeEach(async ({ page }) => {
 ```
 
 Tout comme dans le code des tests, le code du beforeEach est exécuté dans un contexte nodeJS, et pas dans un contexte de navigateur.
-Cela signifie que vous pouvez utilisez n'importe quelle dépendance node pour interragir avec le monde extérieur (driver de BDD, ...).
+Cela signifie que vous pouvez utiliser n'importe quelle dépendance node pour interragir avec le monde extérieur (driver de BDD, ...).
 
 L'appel de cet endpoint provoque l'abandon de la partie en cours.
 
