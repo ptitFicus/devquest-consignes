@@ -135,7 +135,7 @@ Pour cela, copiez / collez le contenu de [playwright-chromium.config.ts](playwri
 
 Écrivez un premier test permettant de remplir le formulaire de la landing page et de passer à la page suivante.
 
-Ne vous embêter pas avec le champ seed, saisissez juste un nom.
+Ne vous embêtez pas avec le champ seed, saisissez juste un nom.
 
 Le formulaire à remplir se trouve à [http://localhost:8080/landing-page](http://localhost:8080/landing-page).
 
