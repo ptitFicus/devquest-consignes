@@ -176,7 +176,7 @@ npx playwright codegen
 
 Écriver un test qui
 
-1. passe le formulaire de la landing page en y saissant un nom (comme précédemment)
+1. passe le formulaire de la landing page (http://localhost:8080/landing-page) en y saissant un nom (comme précédemment)
 2. va sur la page de création de groupe
 3. sélectionne 4 héros
 4. Crée le groupe
