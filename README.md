@@ -79,7 +79,7 @@ Les méthodes seront détaillées au fur et à mesures des besoins, mais elles s
 ## C'est parti !
 
 Nous allons rédiger un premier test allant sur la page de l'application et vérifiant que le titre est bien visible.
-Pour commencez, créer un fichier `hero-management.spec.js` dans le dossiers `tests` créé lors de l'initialisation de Playwright.
+Pour commencez, créer un fichier `hero-management.spec.js` (ou `hero-management.spec.ts` selon ce que vous préférez) dans le dossiers `tests` créé lors de l'initialisation de Playwright.
 
 ```js
 test("Title should be displayed", async ({ page }) => {
