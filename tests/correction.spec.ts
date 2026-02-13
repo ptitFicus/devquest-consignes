@@ -154,6 +154,80 @@ test("hero invocation", async ({ page }) => {
   await expect(page.getByText("benjamin")).toBeVisible();
 });
 
+test("game end", async ({ page }) => {
+  await buildGroupe(page);
+  const rerollButton = page.getByRole("button", { name: "Reroll" });
+  let totalSwords = await doFirstQuest(page);
+
+  async function hasGroup() {
+    return !(await page
+      .getByText("Aucun membre dans votre groupe")
+      .isVisible());
+  }
+
+  let hasGroupMember = await hasGroup();
+  while (hasGroupMember) {
+    totalSwords += await doFirstQuest(page);
+    hasGroupMember = await hasGroup();
+  }
+
+  let gameOver = await isGameOver(page);
+  while (!gameOver) {
+    await rerollButton.click();
+    gameOver = await isGameOver(page);
+  }
+
+  await expect(page.locator("#app")).toContainText(
+    `Votre score est ${totalSwords} ⚔`
+  );
+});
+
+async function isGameOver(page: Page) {
+  return page
+    .getByText("Partie terminée !")
+    .waitFor({ state: "visible", timeout: 500 })
+    .then(() => {
+      console.log("visible");
+      return true;
+    })
+    .catch(() => false);
+}
+
+async function doFirstQuest(page: Page) {
+  const startButton = page.getByRole("button", { name: "commencer" }).first();
+  const difficulty = await startButton
+    .locator("..")
+    .getByRole("img")
+    .getAttribute("aria-label");
+
+  await startButton.click();
+  const dialog = page.locator("dialog");
+  const isSuccess = (await dialog.textContent())?.includes("succès");
+  await dialog.getByRole("button", { name: "OK" }).click();
+  if (isSuccess) {
+    return difficultyLabelToScore(difficulty!);
+  } else {
+    return 0;
+  }
+}
+
+function difficultyLabelToScore(diff: string) {
+  switch (diff) {
+    case "facile":
+      return 1;
+    case "moyen":
+      return 2;
+    case "difficile":
+      return 3;
+    case "extreme":
+      return 4;
+    case "impossible":
+      return 5;
+    default:
+      throw new Error(`unknown difficulty ${diff}`);
+  }
+}
+
 // FIN DES BONUS
 
 async function buildGroupe(page) {
@@ -286,80 +360,6 @@ test("HAR record", async ({ page }) => {
   await page.getByRole("button", { name: "OK" }).click();
   await expect(page.getByTestId("money")).toBeVisible();
 });
-
-test("game end", async ({ page }) => {
-  await buildGroupe(page);
-  const rerollButton = page.getByRole("button", { name: "Reroll" });
-  let totalSwords = await doFirstQuest(page);
-
-  async function hasGroup() {
-    return !(await page
-      .getByText("Aucun membre dans votre groupe")
-      .isVisible());
-  }
-
-  let hasGroupMember = await hasGroup();
-  while (hasGroupMember) {
-    totalSwords += await doFirstQuest(page);
-    hasGroupMember = await hasGroup();
-  }
-
-  let gameOver = await isGameOver(page);
-  while (!gameOver) {
-    await rerollButton.click();
-    gameOver = await isGameOver(page);
-  }
-
-  await expect(page.locator("#app")).toContainText(
-    `Votre score est ${totalSwords} ⚔`
-  );
-});
-
-async function isGameOver(page: Page) {
-  return page
-    .getByText("Partie terminée !")
-    .waitFor({ state: "visible", timeout: 500 })
-    .then(() => {
-      console.log("visible");
-      return true;
-    })
-    .catch(() => false);
-}
-
-async function doFirstQuest(page: Page) {
-  const startButton = page.getByRole("button", { name: "commencer" }).first();
-  const difficulty = await startButton
-    .locator("..")
-    .getByRole("img")
-    .getAttribute("aria-label");
-
-  await startButton.click();
-  const dialog = page.locator("dialog");
-  const isSuccess = (await dialog.textContent())?.includes("succès");
-  await dialog.getByRole("button", { name: "OK" }).click();
-  if (isSuccess) {
-    return difficultyLabelToScore(difficulty!);
-  } else {
-    return 0;
-  }
-}
-
-function difficultyLabelToScore(diff: string) {
-  switch (diff) {
-    case "facile":
-      return 1;
-    case "moyen":
-      return 2;
-    case "difficile":
-      return 3;
-    case "extreme":
-      return 4;
-    case "impossible":
-      return 5;
-    default:
-      throw new Error(`unknown difficulty ${diff}`);
-  }
-}
 
 test("visual regression", async ({ page }) => {
   await page.goto("/landing-page");
