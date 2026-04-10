@@ -48,6 +48,10 @@ Enfin, copier / coller le contenu du fichier [playwright.config.ts](playwright.c
 
 [La doc](https://playwright.dev/docs/intro#installing-playwright)
 
+En cas d'erreur liée au certificat (de type `self-signed certificate in certificate chain`) utilisez la commande 
+
+`NODE_TLS_REJECT_UNAUTHORIZED=0 npx <commande>`
+
 ## Application de test
 
 L'application à tester est disponible sous plusieurs formats :
