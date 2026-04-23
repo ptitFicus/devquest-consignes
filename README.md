@@ -184,7 +184,7 @@ npx playwright codegen
 2. va sur la page de création de groupe
 3. sélectionne 4 héros
 4. Crée le groupe
-5. Vérifie que les héros sélectionnés sont bien présents **sur la page d'accueil**
+5. Vérifie que les héros sélectionnés sont bien présents **sur la page d'accueil** (soyez sûrs d'être revenus à la page d'accueil avant la vérification)
 
 Copiez / collez le code généré dans un nouveau test, nettoyer le en retirant les lignes qui vous semblent inutiles et rajouter des `expect` là ou c'est nécessaire.
 
