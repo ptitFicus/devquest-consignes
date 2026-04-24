@@ -513,6 +513,15 @@ import { chromium } from "playwright";
 })();
 ```
 
+
+Pour exécuter le fichier js, lanccez le simplement avec node, si vous préférez faire du typescript, vous pouvez lancer le fichier avec
+
+```sh
+npx tsx ./src/experimentation.ts
+```
+
+Vous allez sans doute constater que le screenshot ne contient pas toute la page, car elle n'a pas finit de charger. Pour remédier à cela, vous pouvez soit utiliser la fonction waitForLoadState de Playwright ([documentation ici](waitForLoadState)) soit vous baser sur la présence d'un sélecteur donné ([la documentation est ici](https://playwright.dev/docs/api/class-locator#locator-wait-for)).
+
 ## Bonus final : Page object model
 
 Lorsque les tests s'accumulent, le code peut vite devenir redondant.
