@@ -301,7 +301,7 @@ dialog.getByText("<MON TEXTE>");
   <summary>Spoilers (cliquez pour afficher)</summary>
   <ul>
     <li>Pour sélectionner le premier élément d'un locator, utilisez ".first()" : <code>await page.getByRole(/* TODO */).first().click();</code></li>
-    <li>Lors du début d'une quête, l'application effectue un <code>POST</code> sur l'endpoint <code>/api/quetes/<NOM_DE_LA_QUETE>/_commencer</code>, c'est donc cet endpoint qu'il faut bouchonner</li>
+    <li>Lors du début d'une quête, l'application effectue un <code>POST</code> sur l'endpoint <code>/api/quetes/NOM_DE_LA_QUETE/_commencer</code>, c'est donc cet endpoint qu'il faut bouchonner</li>
     <li>La réponse d'une quête ayant réussi est au format <code>{morts: ["NOM D'UN MORT EVENTUEL", "NOM D'UN AUTRE MORT EVENTUEL"], name: "NOM DE LA QUETE", gain: 140}</code> (140 est l'argent rapporté par la quête)</li>
     <li>La réponse d'une quête ayant échoué est au format <code>{morts: ["NOM D'UN MORT EVENTUEL", "NOM D'UN AUTRE MORT EVENTUEL"], name: "NOM DE LA QUETE", gain: null}</code> (un gain null indique l'échec)</li>
   </ul>
